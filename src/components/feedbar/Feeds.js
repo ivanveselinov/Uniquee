@@ -5,6 +5,8 @@ function Feeds() {
   return (
     <div>
       <Feed />
+      <Feed />
+      <Feed />
     </div>
   );
 }

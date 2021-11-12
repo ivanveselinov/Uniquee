@@ -5,9 +5,11 @@ import SidebarRight from "./components/sidebarRight/SidebarRight";
 
 function App() {
   return (
-    <div className="flex">
-      <Header />
-      <div className="flex ">
+    <div>
+      <div>
+        <Header />
+      </div>
+      <div>
         <SidebarLeft />
         <Feedbar />
         <SidebarRight />
