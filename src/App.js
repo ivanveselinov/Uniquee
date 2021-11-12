@@ -1,13 +1,21 @@
-import React from 'react'
 
-const App = () => {
+import Feedbar from "./components/feedbar/Feedbar";
+import Header from "./components/Header";
+import SidebarLeft from "./components/sidebarLeft/SidebarLeft";
+import SidebarRight from "./components/sidebarRight/SidebarRight";
+
+function App() {
   return (
-    <div className="bg-red-400 w-[980px] h-screen ">
-      <div className="container bg-yellow-200 text-center m-auto min-h-0">asdaasdsadsadasds</div>
-      <div className="bg-yellow-200 min-h-[200px]"></div>
+    <div className="flex">
+      <Header />
+      <div className="flex ">
+        <SidebarLeft />
+        <Feedbar />
+        <SidebarRight />
+      </div>
     </div>
-    
-  )
+  );
+
 }
 
 export default App
