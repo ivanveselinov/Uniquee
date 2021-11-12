@@ -7,6 +7,9 @@ function Feeds() {
       <Feed />
       <Feed />
       <Feed />
+      <Feed />
+      <Feed />
+
     </div>
   );
 }

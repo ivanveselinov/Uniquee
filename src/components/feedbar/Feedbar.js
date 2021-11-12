@@ -4,9 +4,11 @@ import Feeds from "./Feeds";
 
 function Feedbar() {
   return (
-    <div className="flex-grow">
+    <div className="flex-grow h-screen item-center flex flex-col">
       <FeedInput />
-      <Feeds />
+      <div className="mt-10">
+        <Feeds />
+      </div>
     </div>
   );
 }
