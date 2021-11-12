@@ -4,7 +4,7 @@ import Feeds from "./Feeds";
 
 function Feedbar() {
   return (
-    <div>
+    <div className="flex-grow">
       <FeedInput />
       <Feeds />
     </div>

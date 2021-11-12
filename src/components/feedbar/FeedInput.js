@@ -1,7 +1,10 @@
-import React from "react";
+import React from 'react'
 
 function FeedInput() {
-  return <div>INPUT</div>;
+  return (
+    <div className="" >This is it</div>
+  )
 }
 
-export default FeedInput;
+export default FeedInput
+

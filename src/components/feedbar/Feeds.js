@@ -3,7 +3,7 @@ import Feed from "./Feed";
 
 function Feeds() {
   return (
-    <div>
+    <div className="border">
       <Feed />
       <Feed />
       <Feed />

@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 
-
-
 @layer components {
   .navBtn {
     @apply h-6  cursor-pointer transform hover:scale-125 transition-all duration-150 ease-out;
