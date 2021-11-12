@@ -6,9 +6,9 @@ import SidebarRight from "./components/sidebarRight/SidebarRight";
 
 function App() {
   return (
-    <div className="flex">
+    <div className="w-screen h-screen flex flex-col">
       <Header />
-      <div className="flex ">
+      <div className="flex border-4 h-full w-screen">
         <SidebarLeft />
         <Feedbar />
         <SidebarRight />
