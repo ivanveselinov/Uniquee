@@ -9,16 +9,17 @@ import React, { useEffect, useState } from "react";
 import { db} from "./firebase/firebase.js";
 
 function App() {
-  // const [user, loading, error] = useAuthState(firebase.auth());  // Check for any users 
-  const user = 'ivan'
-  useEffect(()=>{
-    db.collection("posts")
-      .add({
+  const [user, loading, error] = useAuthState(firebase.auth());  // Check for any users 
+  console.log(user);
+  // const user = 'ivan'
+  // useEffect(()=>{
+  //   db.collection("posts")
+  //     .add({
         
-        name: "name",
-        image: "image",
-      })
-  },[])
+  //       name: "ivan",
+  //       image: "image",
+  //     })
+  // },[])
   return (
     <div className="w-screen h-screen flex flex-col">
       { user? ( <div> <Header />
