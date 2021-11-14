@@ -1,10 +1,11 @@
 import React from "react";
 import Feed from "./Feed";
-import Avatar from '@mui/material/Avatar';
+import Avatar from "@mui/material/Avatar";
 
 function Feeds() {
   return (
     <div className="border-2 w-3/4  m-auto rounded-xl ">
+
       
       
     <div className="border w-3/4 m-auto">
@@ -24,6 +25,7 @@ function Feeds() {
   <Feed />
   </div>
 
+
       <div className="flex justify-between w-full pt-3 border-t-2 mt-4 border-b1">
         <div className="inputBtn">
           <p>Product name</p>
@@ -34,18 +36,16 @@ function Feeds() {
         <div className="inputBtn">
           <p>Add to basket</p>
         </div>
-      
       </div>
-     <div className="border flex justify-between w-full">
-     <div className="inputBtn">
+      <div className="border flex justify-between w-full">
+        <div className="inputBtn">
           <p>Like</p>
         </div>
         <div className="inputBtn">
           <p>Comment</p>
         </div>
+      </div>
     </div>
-  </div>
-    
   );
 }
 
