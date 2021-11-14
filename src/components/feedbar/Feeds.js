@@ -10,7 +10,7 @@ function Feeds() {
     <div className="border w-3/4 m-auto">
       
     <div className="border-2 mt-3 flex"><Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg " />
-    <div className="w-1/2 border text-center m-auto">Name</div>
+    <div className="w-1/2 border text-left m-auto ml-2">Ivan Veselinov</div>
     </div>
   </div>
       
