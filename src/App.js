@@ -6,29 +6,46 @@ import SidebarRight from "./components/sidebarRight/SidebarRight";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Login from "./components/loginPage/Login";
 import React, { useEffect, useState } from "react";
-import { db} from "./firebase/firebase.js";
+import { db } from "./firebase/firebase.js";
+import { useContextProvider } from "./context/StateProvider";
 
 function App() {
-  const [user, loading, error] = useAuthState(firebase.auth());  // Check for any users 
-  console.log(user);
+  const [user, loading, error] = useAuthState(firebase.auth()); // Check for any users
+  const [{ color }, dispatch] = useContextProvider();
+  useEffect(() => {
+    if (user) {
+      dispatch({
+        type: "user",
+        payload: user,
+      });
+    }
+  }, [user]);
+
+  console.log(color);
   // const user = 'ivan'
   // useEffect(()=>{
   //   db.collection("posts")
   //     .add({
-        
+
   //       name: "ivan",
   //       image: "image",
   //     })
   // },[])
   return (
     <div className="w-screen h-screen flex flex-col">
-      { user? ( <div> <Header />
-      <div className="flex border-4 w-screen h-full">
-        <SidebarLeft />
-        <Feedbar />
-        <SidebarRight />
-      </div></div> ) : ( <Login /> ) }
-      
+      {user ? (
+        <div>
+          {" "}
+          <Header />
+          <div className="flex border-4 w-screen h-full">
+            <SidebarLeft />
+            <Feedbar />
+            <SidebarRight />
+          </div>
+        </div>
+      ) : (
+        <Login />
+      )}
     </div>
   );
 }
