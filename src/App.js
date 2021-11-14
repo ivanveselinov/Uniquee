@@ -7,10 +7,22 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Login from "./components/loginPage/Login";
 import React, { useEffect, useState } from "react";
 import { db} from "./firebase/firebase.js";
+import { shadows } from "@mui/system";
+import { useContextProvider } from "./context/StateProvider";
 
 function App() {
-  const [user, loading, error] = useAuthState(firebase.auth());  // Check for any users 
-  console.log(user);
+  const [user, loading, error] = useAuthState(firebase.auth());  // Check for any users inside db
+  const [{ color }, dispatch] = useContextProvider();
+  useEffect(()=>{if (user) {  
+    dispatch(
+      {
+        type: "user",
+        payload: user,
+      }
+    );
+  }},[user])// if user exist dispatch information
+  
+
   // const user = 'ivan'
   // useEffect(()=>{
   //   db.collection("posts")
