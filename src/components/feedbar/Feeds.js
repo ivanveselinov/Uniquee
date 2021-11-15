@@ -1,50 +1,33 @@
 import React from "react";
 import Feed from "./Feed";
 import Avatar from "@mui/material/Avatar";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { db } from "../../firebase/firebase";
 
 function Feeds() {
+
+  const [realtimeProducts] = useCollection(
+    db.collection("products").orderBy("timestamp", "desc").limit(10)  // desc going down last one on top db is connected
+  );
+
   return (
     <div className="border-2 w-3/4  m-auto rounded-xl ">
-
-      
-      
     <div className="border w-3/4 m-auto">
-      
-    <div className="border-2 mt-3 flex"><Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg " />
-    <div className="w-1/2 border text-left m-auto ml-2">Ivan Veselinov</div>
+      {realtimeProducts && realtimeProducts.docs.map(product => (  //show all feeds from db
+        <Feed 
+        
+        ownerPhoto={product.data().userPhoto}
+        category={product.data().category}
+        description={product.data().description}
+        price={product.data().price}
+        postImage={product.data().postImage}
+        productOwner={product.data().user}
+
+        />
+      ))}
     </div>
-  </div>
       
-  <div className="border w-3/4 m-auto mt-5">
-  <Feed />
-  <Feed />
-  <Feed />
-  <Feed />
-  <Feed />
-  <Feed />
-  <Feed />
-  </div>
 
-
-      <div className="flex justify-between w-full pt-3 border-t-2 mt-4 border-b1">
-        <div className="inputBtn">
-          <p>Product name</p>
-        </div>
-        <div className="inputBtn">
-          <p>Price</p>
-        </div>
-        <div className="inputBtn">
-          <p>Add to basket</p>
-        </div>
-      </div>
-      <div className="border flex justify-between w-full">
-        <div className="inputBtn">
-          <p>Like</p>
-        </div>
-        <div className="inputBtn">
-          <p>Comment</p>
-        </div>
-      </div>
     </div>
   );
 }
