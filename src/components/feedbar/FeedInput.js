@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { useContextProvider } from "../../context/StateProvider";
 import { db, storage } from "../../firebase/firebase";  //import db
 import firebase from "firebase"; //b import firebase from firease
+
 function FeedInput() {
   const [{ user }, dispatch] = useContextProvider();
   const descriptionRef = useRef(null);
@@ -32,7 +33,7 @@ function FeedInput() {
     if(loading === true) return; //if someone click more times at once
     setLoading(true);
 
-    if(category === "defaultCategory" || descriptionRef.current.value === "" || priceRef.current.value === "") return;
+    if(category === "defaultCategory" || descriptionRef.current.value === "" || priceRef.current.value === "" ) return;
     // console.log(descriptionRef.current.value);
     // console.log(typeof(priceRef.current.value));
     // console.log(category);
@@ -44,7 +45,7 @@ function FeedInput() {
       userPhoto: user.photoURL,
       description: descriptionRef.current.value,  //field 
       price: priceRef.current.value,
-      catogory: category,
+      category: category,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     })
     .then((doc) => {  //IMAGE!!

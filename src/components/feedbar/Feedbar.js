@@ -6,7 +6,7 @@ function Feedbar() {
   return (
     <div className="flex-grow h-screen item-center flex flex-col">
       <FeedInput />
-      <div className="mt-10">
+      <div className="mt-10 overflow-scroll">
         <Feeds />
       </div>
     </div>
