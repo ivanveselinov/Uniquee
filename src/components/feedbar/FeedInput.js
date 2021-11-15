@@ -1,8 +1,14 @@
 import React, { useRef, useState } from "react";
 import { useContextProvider } from "../../context/StateProvider";
-import { db, storage } from "../../firebase/firebase";  //import db
+import { db, storage } from "../../firebase/firebase"; //import db
 import firebase from "firebase"; //b import firebase from firease
-
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
+import SendIcon from "@mui/icons-material/Send";
 function FeedInput() {
   const [{ user }, dispatch] = useContextProvider();
   const descriptionRef = useRef(null);
@@ -15,8 +21,8 @@ function FeedInput() {
     setPostImage(null);
   };
 
- //Hangle image uploading !!
-  const addImageToPost = (e) => { 
+  //Hangle image uploading !!
+  const addImageToPost = (e) => {
     const reader = new FileReader();
     if (e.target.files[0]) {
       reader.readAsDataURL(e.target.files[0]);
@@ -30,59 +36,65 @@ function FeedInput() {
   //Hangle posting to db
   const submitHandler = (event) => {
     event.preventDefault();
-    if(loading === true) return; //if someone click more times at once
+    if (loading === true) return; //if someone click more times at once
     setLoading(true);
 
-    if(category === "defaultCategory" || descriptionRef.current.value === "" || priceRef.current.value === "" ) return;
+    if (
+      category === "defaultCategory" ||
+      descriptionRef.current.value === "" ||
+      priceRef.current.value === ""
+    )
+      return;
     // console.log(descriptionRef.current.value);
     // console.log(typeof(priceRef.current.value));
     // console.log(category);
 
+    db.collection("products")
+      .add({
+        //create Table products
+        user: user?.displayName, //USER OWNS IT!!
+        userid: user.uid,
+        userPhoto: user.photoURL,
+        description: descriptionRef.current.value, //field
+        price: priceRef.current.value,
+        category: category,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+      .then((doc) => {
+        //IMAGE!!
+        if (postImage) {
+          const uploadTask = storage
+            .ref(`products/${doc.id}`)
+            .putString(postImage, "data_url");
 
-    db.collection("products").add({ //create Table products
-      user: user?.displayName, //USER OWNS IT!!
-      userid: user.uid, 
-      userPhoto: user.photoURL,
-      description: descriptionRef.current.value,  //field 
-      price: priceRef.current.value,
-      category: category,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    })
-    .then((doc) => {  //IMAGE!!
-      if (postImage) {
-        const uploadTask = storage
-          .ref(`products/${doc.id}`)
-          .putString(postImage, "data_url");
+          removeImage();
 
-        removeImage();
+          uploadTask.on(
+            "state_change",
+            null,
+            (error) => console.log(error),
+            () => {
+              storage
+                .ref("products")
+                .child(doc.id)
+                .getDownloadURL()
+                .then((url) => {
+                  db.collection("products").doc(doc.id).set(
+                    {
+                      postImage: url,
+                    },
+                    { merge: true }
+                  );
+                });
+            }
+          );
+        }
+      });
 
-        uploadTask.on(
-          "state_change",
-          null,
-          (error) => console.log(error),
-          () => {
-            storage
-              .ref("products")
-              .child(doc.id)
-              .getDownloadURL()
-              .then((url) => {
-                db.collection("products").doc(doc.id).set(
-                  {
-                    postImage: url,
-                  },
-                  { merge: true }
-                );
-              });
-          }
-        );
-      }
-    });;
-
-    descriptionRef.current.value="";
-    priceRef.current.value="";
-    setCategory("defaultCategory"); 
+    descriptionRef.current.value = "";
+    priceRef.current.value = "";
+    setCategory("defaultCategory");
     setLoading(false); //disable
-
   };
   return (
     <div className="mx-auto w-3/4  border-2 mt-10 p-3 rounded-lg">
@@ -103,27 +115,72 @@ function FeedInput() {
             <button className="hidden" onClick={submitHandler}>
               Submit
             </button>
-          </div> 
+          </div>
+          {postImage && (
+            <div
+              onClick={removeImage}
+              className="flex flex-col filter hover:brightness-90 transition duration-150 transform hover:scale-95 cursor-pointer"
+            >
+              <img
+                loading="lazy"
+                src={postImage}
+                alt="post-image"
+                className="h-9 object-contain "
+              />
+            </div>
+          )}
         </div>
       </form>
-      <div className="flex justify-between w-full pt-3 border-t-2 mt-4 flex-col">
+
+      <div className="flex justify-between w-full pt-3 border-t-2 mt-4 ">
         <div className="inputBtn" onClick={() => fileRef.current.click()}>
-          <p>Photo/Video</p>
+          <p>
+            <PhotoCameraIcon className="" /> Photo/Video
+          </p>
           <input type="file" hidden ref={fileRef} onChange={addImageToPost} />
         </div>
-        <div className="inputBtn">
-          <input type="number" name="price" placeholder="Price $" ref={priceRef} />
-        </div>
-        <div className="inputBtn">
-          <select value={category} onChange={(event) => setCategory(event.target.value)} >
-            <option value="defaultCategory" selected>Choose Category</option>
+        <div className="flex items-center active:bg-gray-400 flex-grow justify-center cursor-pointer rounded-sm">
+          {/* <select
+            value={category}
+            onChange={(event) => setCategory(event.target.value)}
+          >
+            <option value="defaultCategory" selected>
+              Choose Category
+            </option>
             <option value="Painting">Painting</option>
             <option value="Clothes">Clothes</option>
             <option value="Accessories">Accessories</option>
-          </select>
+          </select> */}
+          <Box sx={{ minWidth: 120 }}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Category</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={category}
+                label="Category"
+                onChange={(event) => setCategory(event.target.value)}
+              >
+                <MenuItem value="Painting">Painting</MenuItem>
+                <MenuItem value="Accesories">Accessories</MenuItem>
+                <MenuItem value="handmade">Handmade</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+        </div>
+        <div className="flex items-center active:bg-gray-400 flex-grow justify-center cursor-pointer border-blue-400 rounded-lg w-45 mx-3">
+          <input
+            type="number"
+            name="price"
+            placeholder="Price $"
+            ref={priceRef}
+          />
         </div>
         <div className="inputBtn" onClick={submitHandler}>
-          <p>Send</p>
+          <p className="space-x-2 flex ">
+            <p>Send</p>
+            <SendIcon />
+          </p>
         </div>
       </div>
     </div>

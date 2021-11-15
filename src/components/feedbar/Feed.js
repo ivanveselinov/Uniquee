@@ -1,85 +1,94 @@
-import { Avatar } from "@material-ui/core";
+import { Avatar } from "@mui/material";
 import React from "react";
-import { styled } from '@mui/material/styles';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
+import { styled } from "@mui/material/styles";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import { red } from "@mui/material/colors";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
 })(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
+  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+  marginLeft: "auto",
+  transition: theme.transitions.create("transform", {
     duration: theme.transitions.duration.shortest,
   }),
 }));
 
-function Feed({category, description, postImage, price, productOwner,ownerPhoto, postTime}) {
+function Feed({
+  category,
+  description,
+  postImage,
+  price,
+  productOwner,
+  ownerPhoto,
+  postTime,
+}) {
   const [expanded, setExpanded] = React.useState(false);
   console.log(category);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
   return (
- 
-  <Card sx={{ maxWidth: 900 }, {marginBottom: 5}}>
-    
+    <Card sx={({ maxWidth: 900 }, { marginBottom: 5 })}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
             <Avatar alt="Cindy Baker" src={ownerPhoto} />
           </Avatar>
         }
-     
         title={productOwner}
         subheader={new Date(postTime?.toDate()).toLocaleString()}
       />
       <CardMedia
         component="img"
         height="194"
-        className="h-56 md:h-96" image={postImage}
+        className="h-56 md:h-96"
+        image={postImage}
         alt={postImage}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
           {description}
           <div className="flex justify-between w-full pt-3 border-t-2 mt-4 border-b1 ">
-      
-        <div className>
-        <Button variant="text" name="Category">Category: {category}</Button>
-        </div>
-        <div className>
-        <Button variant="text" name="Price">Price: {price}$</Button>
-        </div>
-        <div className>
-        <Button variant="text" name="Cagetogy">Add to basket:</Button>
-        </div>
-      </div>
-      <div className="border-t flex justify-between w-full">
-        
-      <div className="flex w-1/4 justify-end">
-        <Button variant="text" name="Like">Like</Button>
-        </div>
-        <div className="flex justify-between w-1/4">
-        <Button variant="text" name="Share">Comment</Button>
-        </div>
-      </div>
-   
+            <div className>
+              <Button  variant="text" name="Category ">
+                Category: {category}
+              </Button>
+            </div>
+            <div className>
+              <Button variant="text" name="Price">
+                Price: {price}$
+              </Button>
+            </div>
+            <div className>
+              <Button variant="text" name="Cagetogy">
+                Add to basket:
+              </Button>
+            </div>
+          </div>
+          <div className="border-t flex justify-between w-full">
+            <div className="flex w-1/4 justify-end">
+              <Button variant="text" name="Like">
+                Like
+              </Button>
+            </div>
+            <div className="flex justify-between w-1/4">
+              <Button variant="text" name="Share">
+                Comment
+              </Button>
+            </div>
+          </div>
         </Typography>
-        
       </CardContent>
-    
-      
-      
-    
+
       {/* <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
@@ -126,52 +135,50 @@ function Feed({category, description, postImage, price, productOwner,ownerPhoto,
         </CardContent>
       </Collapse> */}
     </Card>
- );
+  );
 }
 
 //   return (
 //     <div className="border-2 w-3/4 max-w-3/4 min-w-3/4 mt-3 mb-3 m-auto rounded-xl ">
 //     <div className="border-2 w-3/4 m-auto ">
-  
+
 //     <div className="border-2 mt-3 mb-1 flex "><Avatar alt="Cindy Baker" src={ownerPhoto} />
 //     <div className="w-1/2 border text-left m-auto ml-2">{productOwner}</div>
-   
+
 //     </div>
-   
+
 //   </div>
 //     <div className="border-2 w-3/4 m-auto mt-2 max-w-3/4 min-w-3/4"> <p>{description}</p></div>
-      
+
 //   <div className="border-2 m-auto mt-5 max-w-sm min-w-sm">
 //   <img  src={postImage}/>
 //   </div>
-// {/* 
+// {/*
 //   <div className="border-2 m-auto mt-5 w-full h-96 overflow-hidden">
 //   <img className="w-full h-full object-contain" src={postImage}/>
 //   </div> */}
 
-      // <div className="flex justify-between w-full pt-3 border-t-2 mt-4 border-b1">
-      //   <div className="inputBtn">
-      //     <p>Category: {category}</p> 
-      //   </div>
-      //   <div className="inputBtn">
-      //     <p>Price: {price}$</p>
-      //   </div>
-      //   <div className="inputBtn">
-      //     <p>Add to basket</p>
-      //   </div>
-      // </div>
-      // <div className="border flex justify-between w-full">
-      //   <div className="inputBtn">
-      //     <p>Like</p>
-      //   </div>
-      //   <div className="inputBtn">
-      //     <p>Comment</p>
-      //   </div>
-      // </div>
+// <div className="flex justify-between w-full pt-3 border-t-2 mt-4 border-b1">
+//   <div className="inputBtn">
+//     <p>Category: {category}</p>
+//   </div>
+//   <div className="inputBtn">
+//     <p>Price: {price}$</p>
+//   </div>
+//   <div className="inputBtn">
+//     <p>Add to basket</p>
+//   </div>
+// </div>
+// <div className="border flex justify-between w-full">
+//   <div className="inputBtn">
+//     <p>Like</p>
+//   </div>
+//   <div className="inputBtn">
+//     <p>Comment</p>
+//   </div>
+// </div>
 //     </div>
 //   );
 // }
-
-
 
 export default Feed;

@@ -5,9 +5,8 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { db } from "../../firebase/firebase";
 
 function Feeds() {
-
   const [realtimeProducts] = useCollection(
-    db.collection("products").orderBy("timestamp", "desc").limit(10)  // desc going down last one on top db is connected
+    db.collection("products").orderBy("timestamp", "desc").limit(10) // desc going down last one on top db is connected
   );
 
   return (
