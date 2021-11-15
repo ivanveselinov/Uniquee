@@ -75,17 +75,19 @@ function Feed({
         </Typography>
       </CardContent>
       <div className="flex justify-between w-full py-2 border-t mt-3 border-b1 ">
-        <div className=" flex justify-center items-center space-x-2 w-1/3">
+        <div className=" flex items-center space-x-2 w-1/3">
+          <span>&nbsp;&nbsp;</span>
           <CategoryIcon /> <p>{category}</p>
         </div>
         <div className=" flex justify-center items-center w-1/3">
           <AttachMoneyIcon /> <p>{price}</p>
         </div>
-        <div className=" w-1/3 flex cursor-pointer justify-center items-center group space-x-2">
+        <div className=" w-1/3 flex cursor-pointer justify-end items-center group space-x-2 ">
           <p className="text-transparent group-hover:text-black text-xs">
             Add to basket
           </p>
           <ShoppingBasketIcon />
+          <span>&nbsp;&nbsp;</span>
         </div>
       </div>
       <div className="border-t flex justify-between w-full ">
