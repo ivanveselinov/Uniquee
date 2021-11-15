@@ -11,7 +11,8 @@ function Feeds() {
   );
 
   return (
-    <div className=" w-3/4  m-auto rounded-xl overflow-scroll">
+    <div className=" w-3/4  m-auto rounded-xl overflow-scroll">  
+    {/* SCROLL TRY PAGE!! */}
  
       {realtimeProducts && realtimeProducts.docs.map(product => (  //show all feeds from db
         <Feed 
