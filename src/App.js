@@ -12,7 +12,8 @@ function App() {
   const [user, loading, error] = useAuthState(firebase.auth()); // Check for any users
   const [{ color }, dispatch] = useContextProvider();
   useEffect(() => {
-    if (user) {  // user own everything
+    if (user) {
+      // user own everything
       dispatch({
         type: "user",
         payload: user,
@@ -29,7 +30,7 @@ function App() {
   //     })
   // },[])
   return (
-    <div className="w-screen h-screen flex flex-col">
+    <div className="w-screen h-screen flex flex-col min-w-[1200px]">
       {user ? (
         <div>
           {" "}
