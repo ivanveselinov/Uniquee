@@ -168,7 +168,7 @@ function FeedInput() {
             </FormControl>
           </Box>
         </div>
-        <div className="flex items-center active:bg-gray-400 flex-grow justify-center cursor-pointer rounded-lg w-45 mx-3">
+        <div className="flex items-center active:bg-gray-400 flex-grow justify-center cursor-pointer border-blue-400 rounded-lg w-45 mx-3">
           <input
             type="number"
             name="price"

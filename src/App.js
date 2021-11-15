@@ -30,7 +30,7 @@ function App() {
   //     })
   // },[])
   return (
-    <div className="w-screen h-screen flex flex-col min-w-[1200px]">
+    <div className="w-screen h-screen flex flex-col min-w-[1200px] ">
       {user ? (
         <div>
           {" "}

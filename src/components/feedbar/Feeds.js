@@ -10,24 +10,23 @@ function Feeds() {
   );
 
   return (
-    <div className="border-2 w-3/4  m-auto rounded-xl ">
-      <div className="w-3/4 m-auto border-8">
-        {realtimeProducts &&
-          realtimeProducts.docs.map(
-            (
-              product //show all feeds from db
-            ) => (
-              <Feed
-                ownerPhoto={product.data().userPhoto}
-                category={product.data().category}
-                description={product.data().description}
-                price={product.data().price}
-                postImage={product.data().postImage}
-                productOwner={product.data().user}
-              />
-            )
-          )}
-      </div>
+    <div className=" w-3/4  m-auto rounded-xl overflow-scroll">
+      {realtimeProducts &&
+        realtimeProducts.docs.map(
+          (
+            product //show all feeds from db
+          ) => (
+            <Feed
+              postTime={product.data().timestamp}
+              ownerPhoto={product.data().userPhoto}
+              category={product.data().category}
+              description={product.data().description}
+              price={product.data().price}
+              postImage={product.data().postImage}
+              productOwner={product.data().user}
+            />
+          )
+        )}
     </div>
   );
 }
