@@ -10,7 +10,7 @@ function Feeds() {
   );
 
   return (
-    <div className=" w-3/4  m-auto rounded-xl overflow-scroll">
+    <div className=" w-full lg:w-3/4  m-auto rounded-xl">
       {realtimeProducts &&
         realtimeProducts.docs.map(
           (

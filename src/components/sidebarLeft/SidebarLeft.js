@@ -3,7 +3,7 @@ import CheckboxList from "./CheckBoxList";
 
 function SidebarLeft() {
   return (
-    <div className=" w-1/4 border-4 text-left bg-indigo-100 ">
+    <div className="hidden lg:inline-flex w-1/4 border-4 text-left bg-indigo-100 ">
       <CheckboxList />
     </div>
   );
