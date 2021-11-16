@@ -18,7 +18,7 @@ function Feeds() {
           ) => (
             <Feed
               key={product.id}
-              productID={product.id}
+              productId={product.id}
               postTime={product.data().timestamp}
               ownerPhoto={product.data().userPhoto}
               category={product.data().category}

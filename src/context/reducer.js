@@ -33,7 +33,7 @@ export const reducer = (state, action) => {
 
           case "REMOVE_FROM_BASKET":
             const index = state.basket.findIndex(
-              item => item.id === action.payload
+              item => item.productId === action.payload
             )
             let basketCopy = [...state.basket]
             basketCopy.splice(index, 1);
