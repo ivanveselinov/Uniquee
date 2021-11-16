@@ -2,6 +2,8 @@ export const initialState = {
     user: {},
     color: "blue",
     basket: [],
+    selecterCategory: "",
+    products: [],
 
 };
 
@@ -42,6 +44,18 @@ export const reducer = (state, action) => {
               ...state,
               basket: basketCopy,
             };
+
+            case "SELECT_CATEGORY":
+              return {
+                ...state,
+                selecterCategory: action.payload, 
+              };
+
+              case "ADD_PRODUCTS":
+              return {
+                ...state,
+                products: action.payload, 
+              };
 
           default:
             return;

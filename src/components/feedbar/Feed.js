@@ -53,7 +53,7 @@ function Feed({
   const addToBasket = () => {
     dispatch({
       type: "addToBasket",
-      payload: {
+      payload:  {
         category: category,
         price: price, 
         postImage: postImage,
