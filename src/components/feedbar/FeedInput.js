@@ -165,8 +165,15 @@ function FeedInput() {
                   <p className="text-gray-400">Category</p>
                 </MenuItem>
                 <MenuItem value="Painting">Painting</MenuItem>
-                <MenuItem value="Accesories">Accessories</MenuItem>
-                <MenuItem value="handmade">Handmade</MenuItem>
+                <MenuItem value="Accessories">Accessories</MenuItem>
+                <MenuItem value="Handmade">Handmade</MenuItem>
+                <MenuItem value="Txtural">Textural</MenuItem>
+                <MenuItem value="Clothes">Clothes</MenuItem>
+                <MenuItem value="NFTs">NFTs</MenuItem>
+                <MenuItem value="Jewerly">Jewerly</MenuItem>
+                <MenuItem value="Cookies">Cookies</MenuItem>
+                <MenuItem value="Plants">Plants</MenuItem>
+                <MenuItem value="Other">Other</MenuItem>
               </Select>
             </FormControl>
           </div>
