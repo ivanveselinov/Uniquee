@@ -30,12 +30,12 @@ function App() {
   //     })
   // },[])
   return (
-    <div className="w-screen h-screen flex flex-col min-w-[1200px] ">
+    <div className="w-screen max-h-screen bg-gray-100 flex flex-col ">
       {user ? (
         <div>
           {" "}
           <Header />
-          <div className="flex border-4 w-screen h-full">
+          <div className="flex w-screen h-full">
             <SidebarLeft />
             <Feedbar />
             <SidebarRight />

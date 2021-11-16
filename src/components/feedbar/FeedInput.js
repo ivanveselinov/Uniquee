@@ -2,14 +2,25 @@ import React, { useRef, useState } from "react";
 import { useContextProvider } from "../../context/StateProvider";
 import { db, storage } from "../../firebase/firebase"; //import db
 import firebase from "firebase"; //b import firebase from firease
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import SendIcon from "@mui/icons-material/Send";
+import { Avatar, Card } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: "12px  16px 10px 16px",
+    borderRadius: "7px",
+    display: "flex",
+    flexDirection: "column",
+  },
+}));
+
 function FeedInput() {
+  const classes = useStyles();
   const [{ user }, dispatch] = useContextProvider();
   const descriptionRef = useRef(null);
   const priceRef = useRef(null);
@@ -45,9 +56,6 @@ function FeedInput() {
       priceRef.current.value === ""
     )
       return;
-    // console.log(descriptionRef.current.value);
-    // console.log(typeof(priceRef.current.value));
-    // console.log(category);
 
     db.collection("products")
       .add({
@@ -96,26 +104,23 @@ function FeedInput() {
     setCategory("defaultCategory");
     setLoading(false); //disable
   };
+
   return (
-    <div className="mx-auto w-3/4  border-2 mt-10 p-3 rounded-lg">
-      <form className="w-full " onSubmit={submitHandler}>
-        <div className="flex space-x-2">
-          <img
-            className="w-8 h-8 rounded-full ring-1"
-            src={user?.photoURL}
-            alt=""
-          />
-          <div className="flex-grow">
+    <div className="mx-auto w-full  lg:w-3/4   mb-5  rounded-lg ">
+      <Card className={classes.root}>
+        <div className="flex space-x-4 items-center">
+          <Avatar src={user?.photoURL} className="h-8 w-8" />
+          <form className="w-full flex " onSubmit={submitHandler}>
             <input
               ref={descriptionRef}
               type="text"
               placeholder="Tell us about your product"
-              className="rounded-full h-10 placeholder-gray-400 bg-gray-100 flex-grow w-full"
+              className=" rounded-full h-10 placeholder-gray-500 placeholder-opacity-100 bg-gray-100 flex-grow px-5 focus:outline-none w-full"
             />
             <button className="hidden" onClick={submitHandler}>
               Submit
             </button>
-          </div>
+          </form>
           {postImage && (
             <div
               onClick={removeImage}
@@ -124,36 +129,31 @@ function FeedInput() {
               <img
                 loading="lazy"
                 src={postImage}
-                alt="post-image"
+                alt="postImage"
                 className="h-9 object-contain "
               />
             </div>
           )}
         </div>
-      </form>
 
-      <div className="flex justify-between w-full pt-3 border-t-2 mt-4 ">
-        <div className="inputBtn" onClick={() => fileRef.current.click()}>
-          <p>
-            <PhotoCameraIcon className="" /> Photo/Video
-          </p>
-          <input type="file" hidden ref={fileRef} onChange={addImageToPost} />
-        </div>
-        <div className="flex items-center active:bg-gray-400 flex-grow justify-center cursor-pointer rounded-sm">
-          {/* <select
-            value={category}
-            onChange={(event) => setCategory(event.target.value)}
+        <div className="flex justify-between w-full pt-3 border-t mt-4 space-x-4">
+          {/* Photo button */}
+          <div
+            className="inputBtn rounded-bl-lg flex justify-center  w-1/5 "
+            onClick={() => fileRef.current.click()}
           >
-            <option value="defaultCategory" selected>
-              Choose Category
-            </option>
-            <option value="Painting">Painting</option>
-            <option value="Clothes">Clothes</option>
-            <option value="Accessories">Accessories</option>
-          </select> */}
-          <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Category</InputLabel>
+            <p className="flex space-x-2">
+              <PhotoCameraIcon />{" "}
+              <p className=" hidden sm:inline-flex text-xs font-semibold text-gray-600 sm:text-sm xl:text-base">
+                Photo
+              </p>
+            </p>
+            <input type="file" hidden ref={fileRef} onChange={addImageToPost} />
+          </div>
+          {/* Category dropDown */}
+          <div className="flex items-center  justify-center w-1/5  h-10">
+            <FormControl variant="standard" fullWidth>
+              {/* <InputLabel id="demo-simple-select-label">Category</InputLabel> */}
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -161,28 +161,38 @@ function FeedInput() {
                 label="Category"
                 onChange={(event) => setCategory(event.target.value)}
               >
+                <MenuItem value="defaultCategory" selected>
+                  <p className="text-gray-400">Category</p>
+                </MenuItem>
                 <MenuItem value="Painting">Painting</MenuItem>
                 <MenuItem value="Accesories">Accessories</MenuItem>
                 <MenuItem value="handmade">Handmade</MenuItem>
               </Select>
             </FormControl>
-          </Box>
+          </div>
+
+          {/* Price input */}
+          <div className="flex items-center border-b border-gray-400  justify-center cursor-pointer  rounded-sm   w-1/5">
+            <input
+              className="w-full outline-none mx-2"
+              type="text"
+              name="price"
+              placeholder="Price $"
+              ref={priceRef}
+            />
+          </div>
+
+          {/* Send button */}
+          <div className="inputBtn rounded-br-lg w-1/5" onClick={submitHandler}>
+            <p className="space-x-2 flex ">
+              <p className="hidden sm:inline-flex text-xs font-semibold text-gray-600 sm:text-sm xl:text-base">
+                Send
+              </p>
+              <SendIcon />
+            </p>
+          </div>
         </div>
-        <div className="flex items-center active:bg-gray-400 flex-grow justify-center cursor-pointer border-blue-400 rounded-lg w-45 mx-3">
-          <input
-            type="number"
-            name="price"
-            placeholder="Price $"
-            ref={priceRef}
-          />
-        </div>
-        <div className="inputBtn" onClick={submitHandler}>
-          <p className="space-x-2 flex ">
-            <p>Send</p>
-            <SendIcon />
-          </p>
-        </div>
-      </div>
+      </Card>
     </div>
   );
 }

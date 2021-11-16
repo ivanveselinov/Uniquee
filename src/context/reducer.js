@@ -1,6 +1,8 @@
 export const initialState = {
     user: {},
-    color: "blue"
+    color: "blue",
+    basket: [],
+
 };
 
 export const reducer = (state, action) => {
@@ -22,8 +24,28 @@ export const reducer = (state, action) => {
           ...state,
           color: "black",
         };
-  
-      default:
-        return;
+
+        case "addToBasket":
+          return {
+            ...state,
+            basket: [...state.basket, action.payload],
+          };
+
+          case "REMOVE_FROM_BASKET":
+            const index = state.basket.findIndex(
+              item => item.id === action.payload
+            )
+            let basketCopy = [...state.basket]
+            basketCopy.splice(index, 1);
+           
+            return {
+              ...state,
+              basket: basketCopy,
+            };
+
+          default:
+            return;
+      
     }
+
   };

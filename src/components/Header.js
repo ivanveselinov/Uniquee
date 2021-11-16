@@ -7,7 +7,7 @@ function Header() {
   const [{ user }, dispatch] = useContextProvider(); //  Import all user information from database from reducer.js
 
   return (
-    <div className="w-screen h-20 flex justify-between bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500">
+    <div className="w-screen h-20 flex justify-between bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 shadow-md">
       <div className="flex">
         <h2 className="m-5 text-3xl">Uniquee</h2>
       </div>

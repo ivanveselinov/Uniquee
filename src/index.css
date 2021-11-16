@@ -10,6 +10,6 @@
     @apply h-7 hover:scale-125 cursor-pointer transform transition-all duration-150 ease-out text-2xl;
   }
   .inputBtn {
-    @apply flex items-center hover:bg-gray-100 active:bg-gray-400 flex-grow justify-center cursor-pointer rounded-sm;
+    @apply flex items-center hover:bg-gray-100 active:bg-gray-400 flex-grow justify-center cursor-pointer;
   }
 }

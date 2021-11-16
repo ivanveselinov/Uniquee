@@ -4,9 +4,9 @@ import Feeds from "./Feeds";
 
 function Feedbar() {
   return (
-    <div className="flex-grow h-screen item-center flex flex-col ">
-      <FeedInput />
-      <div className="mt-10 overflow-scroll">
+    <div className="flex-grow max-h-screen pb-44   overflow-y-auto scrollbar-hide">
+      <div className=" mx-auto max-w-md md:max-w-lg lg:max-w-xl 2xl:max-w-2xl pt-5">
+        <FeedInput />
         <Feeds />
       </div>
     </div>
