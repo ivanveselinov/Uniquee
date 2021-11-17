@@ -5,6 +5,7 @@ export const initialState = {
   selectedCategory: "",
   products: [],
   filteredProducts: [],
+  userLikes: [],
 };
 
 export const reducer = (state, action) => {
@@ -60,6 +61,14 @@ export const reducer = (state, action) => {
         ...state,
         products: action.payload,
       };
+
+      case "USER_LIKES":
+      return {
+        ...state,
+        userLikes:  action.payload,
+      };
+
+      
 
     default:
       return;

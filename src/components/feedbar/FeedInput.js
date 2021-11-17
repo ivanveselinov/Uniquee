@@ -61,6 +61,7 @@ function FeedInput() {
       .add({
         //create Table products
         user: user?.displayName, //USER OWNS IT!!
+        likes: 0,
         userid: user.uid,
         userPhoto: user.photoURL,
         description: descriptionRef.current.value, //field

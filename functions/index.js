@@ -12,28 +12,28 @@ exports.userCreated = functions.auth.user().onCreate((user) => {
     .set(JSON.parse(JSON.stringify(user)));
 });
 
-// // on new like add
-// exports.postLiked = functions.firestore
-//   .document("users/{userId}/likes/{postId}")
-//   .onCreate((doc) => {
-//     admin
-//       .firestore()
-//       .collection("posts")
-//       .doc(doc.id)
-//       .update({
-//         likes: admin.firestore.FieldValue.increment(1),
-//       });
-//   });
+// on new like add
+exports.postLiked = functions.firestore
+  .document("users/{userId}/likes/{productId}")
+  .onCreate((doc) => {
+    admin
+      .firestore()
+      .collection("products")
+      .doc(doc.id)
+      .update({
+        likes: admin.firestore.FieldValue.increment(1),
+      });
+  });
 
-// // on like remove
-// exports.postUnliked = functions.firestore
-//   .document("users/{userId}/likes/{postId}")
-//   .onDelete((doc) => {
-//     admin
-//       .firestore()
-//       .collection("posts")
-//       .doc(doc.id)
-//       .update({
-//         likes: admin.firestore.FieldValue.increment(-1),
-//       });
-//   });
+// on like remove
+exports.postUnliked = functions.firestore
+  .document("users/{userId}/likes/{productId}")
+  .onDelete((doc) => {
+    admin
+      .firestore()
+      .collection("products")
+      .doc(doc.id)
+      .update({
+        likes: admin.firestore.FieldValue.increment(-1),
+      });
+  });

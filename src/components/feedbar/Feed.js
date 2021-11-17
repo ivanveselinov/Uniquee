@@ -1,5 +1,8 @@
 import { Avatar, CardActions } from "@mui/material";
 import React, { useState } from "react";
+import { useDocument } from "react-firebase-hooks/firestore";
+import { useEffect } from "react";
+import firebase from "firebase";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -16,6 +19,8 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import CommentIcon from "@mui/icons-material/Comment";
 import { makeStyles } from "@mui/styles";
 import { useContextProvider } from "../../context/StateProvider";
+import { Collections } from "@material-ui/icons";
+import { db } from "../../firebase/firebase";
 // import CardActions from "@mui/material/CardActions";
 
 const useStyles = makeStyles((theme) => ({
@@ -45,8 +50,13 @@ function Feed({
   const classes = useStyles();
   const [liked, setLiked] = useState(false);
   const [expanded, setExpanded] = React.useState(false);
-  const [{ basket }, dispatch] = useContextProvider();
+  const [{ basket, user, userLikes }, dispatch] = useContextProvider();
+  const [likesCount, setLikesCount] = useState(0);
 
+  //Real time product hook for likes
+  const [thisProduct, loading, error] = useDocument(
+    firebase.firestore().doc(`products/${productId}`)
+  );
 
   // add to basket handler
 
@@ -55,12 +65,46 @@ function Feed({
       type: "addToBasket",
       payload: {
         category: category,
-        price: price, 
+        price: price,
         postImage: postImage,
         productId: productId,
-      } 
-    })
-  }
+      },
+    });
+  };
+
+  //Function for handling likes
+  useEffect(() => {
+    if (userLikes?.includes(productId)) {
+      setLiked(true);
+    }
+  }, [userLikes]);
+
+  //faster counting likes without delay
+  useEffect(() => {
+    setLikesCount(thisProduct?.data().likes);
+  }, [thisProduct]);
+
+  const likeHandler = () => {
+    if (!liked) {
+      db.collection("users")
+        .doc(user?.uid)
+        .collection("likes")
+        .doc(productId)
+        .set({
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        })
+        .then(setLikesCount((prevCount) => prevCount + 1))
+        .then(setLiked(true));
+    } else {
+      db.collection("users")
+        .doc(user?.uid)
+        .collection("likes")
+        .doc(productId)
+        .delete()
+        .then(setLikesCount((prevCount) => prevCount - 1))
+        .then(setLiked(false));
+    }
+  };
 
   return (
     <Card sx={({ maxWidth: 900 }, { marginBottom: 5 })}>
@@ -97,7 +141,10 @@ function Feed({
         <div className=" flex justify-center items-center w-1/3">
           <AttachMoneyIcon /> <p>{price}</p>
         </div>
-        <div className=" w-1/3 flex cursor-pointer justify-end items-center group space-x-2 " onClick={addToBasket}>
+        <div
+          className=" w-1/3 flex cursor-pointer justify-end items-center group space-x-2 "
+          onClick={addToBasket}
+        >
           <p className="text-transparent group-hover:text-black text-xs">
             Add to basket
           </p>
@@ -107,10 +154,10 @@ function Feed({
       </div>
       <div className="border-t flex justify-between w-full ">
         <CardActions className={classes.btnHolder}>
-          <Button variant="text" name="Like" onClick={() => setLiked(!liked)}>
+          <Button variant="text" name="Like" onClick={likeHandler}>
             <span>&nbsp;</span>
             {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-            <span>&nbsp;Like</span>
+            <span>&nbsp;Like&nbsp;&nbsp;{likesCount}</span>
           </Button>
           <Button variant="text" name="Share">
             <span>Comment&nbsp;</span>

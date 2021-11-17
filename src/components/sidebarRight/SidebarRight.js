@@ -3,7 +3,7 @@ import Basket from "./Basket";
 import Search from "./Search";
 
 function SidebarRight() {
-  return<div className="w-1/4 placeholder-gray-400 bg-gray-100  overflow-hidden ">
+  return<div className=" w-1/4 placeholder-gray-400 bg-gray-100  overflow-hidden">
 <Search />  
 <Basket />
  </div>

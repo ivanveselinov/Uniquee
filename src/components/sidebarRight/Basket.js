@@ -2,6 +2,7 @@ import { InsertComment } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react'
 import { useContextProvider } from "../../context/StateProvider";
 import Item from './Item';
+import PaymentIcon from '@mui/icons-material/Payment';
 
 
 function Basket() {
@@ -16,17 +17,19 @@ function Basket() {
     }, [basket])
 
     return (
-        <div className="bg-gray-200 w-1/2 ">
+        <div className="bg-gray-100">
            {basket?.map((item) => (
+               <div className=" text-2xl h-10 mt-3 mr-2">
                <Item 
                 productId={item.productId}
                 price={item.price}
                 category={item.category} 
                 image={item.postImage} 
                 />
+                </div>
            ))}
-           <div>
-                {totalPrice > 0 && ( <p>{`$ ${totalPrice} `}</p>
+           <div className="text-2xl flex mb-2 text-red-500 border-t "> 
+                 {totalPrice > 0 && ( <p>{`$ ${totalPrice} `} <button className="border bg-gray-300"><PaymentIcon/>Pay</button></p>
                 )}
             </div>
         </div>

@@ -10,7 +10,8 @@ function Feeds() {
     useContextProvider();
   const [realtimeProducts] = useCollection(
     db.collection("products").orderBy("timestamp", "desc").limit(10) // desc going down last one on top db is connected
-  );
+    );
+
 
   useEffect(() => {
     const myProducts = [];
