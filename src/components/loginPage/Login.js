@@ -1,6 +1,7 @@
-import React from 'react'
+import React from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase from "firebase";
+import Header from "../Header";
 
 // Config FirebaseUI
 const uiConfig = {
@@ -15,14 +16,25 @@ const uiConfig = {
 };
 
 function Login() {
-    return (
-        <div>
-            <StyledFirebaseAuth
+  return (
+    <div>
+      <div>
+        <Header />
+      </div>
+      <div>
+        <p>
+          This web application is aiming to encourage all individuals to be more
+          creative and share their own products here with other users.{" "}
+        </p>
+      </div>
+      <div>
+        <StyledFirebaseAuth
           uiConfig={uiConfig}
           firebaseAuth={firebase.auth()}
-           />
-        </div>
-    )
+        />
+      </div>
+    </div>
+  );
 }
 
-export default Login
+export default Login;
