@@ -11,6 +11,9 @@ function Header() {
       <div className="flex">
         <h2 className="m-5 text-3xl">Uniquee</h2>
       </div>
+      <div className="flex">
+        <p className="m-5 text-3xl">You can share your creativity here</p>
+      </div>
       <div
         className="flex overflow-hidden"
         onClick={() => firebase.auth().signOut()}

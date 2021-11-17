@@ -13,8 +13,8 @@ function Item({price, category, image, productId}) {
         })
     }
     return (
-        <div className="w-full flex justify-between items-center " >
-            <button className="text-red-400" onClick={removeHandler}>
+        <div className="w-full flex justify-between items-center border-t " >
+            <button className="text-red-400 mb-2 " onClick={removeHandler}>
                 <HighlightOffIcon/>
                 </button>
             <div>
