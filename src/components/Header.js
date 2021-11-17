@@ -9,24 +9,28 @@ function Header() {
   return (
     <div className="w-screen h-20 flex justify-between bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 shadow-md">
       <div className="flex">
-        <h2 className="m-5 text-3xl">Uniquee</h2>
+        <h2 className="m-5 text-3xl font-black">Uniquee</h2>
       </div>
-      <div className="flex">
-        <p className="m-5 text-3xl">You can share your creativity here</p>
+      <div className="flex text-center">
+        <p className="hidden lg:m-5 font-mono text-2xl items-center flex justify-between sm:inline-flex">
+          Share your creativity with everyone
+        </p>
       </div>
-      <div
-        className="flex overflow-hidden"
-        onClick={() => firebase.auth().signOut()}
-      >
-        <a href="#" className="flex items-center">
-          Logout {user.displayName} {/*  Display name on logout */}
-        </a>
-        <img
-          className="inline-block h-12 w-12 rounded-full ring-2 ring-white m-4"
-          src={user?.photoURL}
-          alt=""
-        />
-      </div>
+      {user.displayName && (
+        <div
+          className="flex overflow-hidden"
+          onClick={() => firebase.auth().signOut()}
+        >
+          <a href="#" className="flex items-center">
+            Logout {user.displayName} {/*  Display name on logout */}
+          </a>
+          <img
+            className="inline-block h-12 w-12 rounded-full ring-2 ring-white m-4"
+            src={user?.photoURL}
+            alt=""
+          />
+        </div>
+      )}
     </div>
   );
 }

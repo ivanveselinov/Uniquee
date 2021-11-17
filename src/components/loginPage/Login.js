@@ -22,7 +22,7 @@ function Login() {
         <Header />
       </div>
       <div>
-        <p>
+        <p className="">
           This web application is aiming to encourage all individuals to be more
           creative and share their own products here with other users.{" "}
         </p>
