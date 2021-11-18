@@ -19,11 +19,8 @@ const uiConfig = {
 function Login() {
   return (
     <div className="bg-gray-100 h-screen">
-      <div>
-        <Header />
-      </div>
       <div className="">
-        <div className="flex items-center w-full justify-center h-full mt-12 flex-col font-mono filter drop-shadow-lg">
+        <div className="flex items-center w-screen justify-center h-full flex-col font-mono filter drop-shadow-lg mt-32 mb-7">
           <p className="">
             This web application is aiming to encourage all individuals to be
             more creative and share their own products here with other users.
