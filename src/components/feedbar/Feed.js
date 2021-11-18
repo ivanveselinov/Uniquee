@@ -147,7 +147,7 @@ function Feed({
           className=" lg:w-1/3 flex cursor-pointer justify-end items-center group space-x-2 "
           onClick={addToBasket}
         >
-          <p className="hidden sm:inline-flex text-transparent group-hover:text-black text-xs ">
+          <p className="sm:hidden inline-flex text-transparent group-hover:text-black text-xs ">
             Add to basket
           </p>
           <ShoppingBasketIcon />
