@@ -47,6 +47,7 @@ function App() {
       <Header />
       {user ? (
         <div className="flex w-screen">
+          {" "}
           <SidebarLeft />
           <Feedbar />
           <SidebarRight />
