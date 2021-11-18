@@ -12,7 +12,7 @@ function Header() {
         <h2 className="m-5 text-3xl font-black">Uniquee</h2>
       </div>
       <div className="flex text-center">
-        <p className="hidden lg:m-5 font-mono text-2xl items-center flex justify-between sm:inline-flex">
+        <p className="hidden lg:m-5 font-mono text-2xl items-center flex justify-between sm:inline-flex pr-3">
           Share your creativity with everyone
         </p>
       </div>
