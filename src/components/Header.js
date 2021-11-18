@@ -2,7 +2,7 @@ import React from "react";
 import firebase from "firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useContextProvider } from "../context/StateProvider";
-
+import LogoutIcon from '@mui/icons-material/Logout';
 function Header() {
   const [{ user }, dispatch] = useContextProvider(); //  Import all user information from database from reducer.js
 
@@ -20,9 +20,9 @@ function Header() {
         <div
           className="flex overflow-hidden"
           onClick={() => firebase.auth().signOut()}
-        >
-          <a href="#" className="flex items-center">
-            Logout {user.displayName} {/*  Display name on logout */}
+        > 
+          <a href="#" className="flex items-center hover:bg-blend-soft-light  hover:underline  ">
+          {user.displayName}&nbsp;&nbsp; <LogoutIcon/>{/*  Display name on logout */}
           </a>
           <img
             className="inline-block h-12 w-12 rounded-full ring-2 ring-white m-4"

@@ -52,7 +52,8 @@ function App() {
   //     })
   // },[])
   return (
-    <div className="w-screen max-h-screen bg-gray-100 flex flex-col ">
+    // 
+    <div className="w-screen bg-gray-100 flex flex-col ">
       {user ? (
         <div>
           {" "}

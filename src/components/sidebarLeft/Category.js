@@ -12,8 +12,8 @@ const Category = ({ name, Icon }) => {
 
   return (
     <div
-      className={`flex justify-between items-center hover:bg-gray-200 cursor-pointer ${
-        selectedCategory === name && "bg-gray-200"
+      className={`flex justify-between items-center cursor-pointer mb-2 ${
+        selectedCategory === name && "bg-gray-200 p-2 "
       }`}
       onClick={clickHandler}
     >
@@ -26,3 +26,4 @@ const Category = ({ name, Icon }) => {
 };
 
 export default Category;
+

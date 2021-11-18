@@ -107,7 +107,7 @@ function FeedInput() {
   };
 
   return (
-    <div className="mx-auto w-full  lg:w-3/4   mb-5  rounded-lg ">
+    <div className="mx-auto w-full  lg:w-3/4   mb-5  rounded-lg">
       <Card className={classes.root}>
         <div className="flex space-x-4 items-center">
           <Avatar src={user?.photoURL} className="h-8 w-8" />
@@ -137,7 +137,7 @@ function FeedInput() {
           )}
         </div>
 
-        <div className="flex justify-between w-full pt-3 border-t mt-4 space-x-4">
+        <div className="flex justify-between lg:w-full pt-3 border-t mt-4 space-x-4">
           {/* Photo button */}
           <div
             className="inputBtn rounded-bl-lg flex justify-center  w-1/5 "
@@ -152,7 +152,7 @@ function FeedInput() {
             <input type="file" hidden ref={fileRef} onChange={addImageToPost} />
           </div>
           {/* Category dropDown */}
-          <div className="flex items-center  justify-center w-1/5  h-10">
+          <div className=" flex items-center  justify-center w-1/5  h-10">
             <FormControl variant="standard" fullWidth>
               {/* <InputLabel id="demo-simple-select-label">Category</InputLabel> */}
               <Select
@@ -180,9 +180,9 @@ function FeedInput() {
           </div>
 
           {/* Price input */}
-          <div className="flex items-center border-b border-gray-400  justify-center cursor-pointer  rounded-sm   w-1/5">
+          <div className="mb-1 flex items-center border-b border-gray-400  justify-center cursor-pointer  rounded-sm w-1/5  ">
             <input
-              className="w-full outline-none mx-2"
+              className="w-full outline-none mx-2 "
               type="text"
               name="price"
               placeholder="Price $"

@@ -17,7 +17,7 @@ function Basket() {
     }, [basket])
 
     return (
-        <div className="bg-gray-100">
+        <div className="bg-gradient-to-r from-blue-300 via-pink-200 to-indigo-50 m-5">
            {basket?.map((item) => (
                <div className=" text-2xl h-10 mt-3 mr-2">
                <Item 
@@ -29,7 +29,7 @@ function Basket() {
                 </div>
            ))}
            <div className="text-2xl flex mb-2 text-red-500 border-t "> 
-                 {totalPrice > 0 && ( <p>{`$ ${totalPrice} `} <button className="border bg-gray-300"><PaymentIcon/>Pay</button></p>
+                 {totalPrice > 0 && ( <p>{`$ ${totalPrice} `} <button className=""><PaymentIcon/>Pay</button></p>
                 )}
             </div>
         </div>

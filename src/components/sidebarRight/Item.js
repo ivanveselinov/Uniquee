@@ -13,18 +13,18 @@ function Item({price, category, image, productId}) {
         })
     }
     return (
-        <div className="w-full flex justify-between items-center border-t " >
-            <button className="text-red-400 mb-2 " onClick={removeHandler}>
+        <div className="lg:w-full flex justify-between items-center border-t " >
+            <button className=" text-red-400 mb-2" onClick={removeHandler}>
                 <HighlightOffIcon/>
                 </button>
-            <div>
+            <div className="sm:inline-flex text-l">
                 {price} <AttachMoneyIcon/>
             </div>
-            <div >
+            <div className=" hidden sm:inline-flex ">  {/* Small screen hide category */}
                 {category}
             </div>
             <div>
-                <img src={image} alt="" className="h-10 w-10 border "/>
+                <img src={image} alt="" className=" lg:max-w-xs lg:w-sm h-10 w-10 border "/>
             </div>
         </div>
     )

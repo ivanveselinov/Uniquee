@@ -134,25 +134,27 @@ function Feed({
         </Typography>
       </CardContent>
       <div className="flex justify-between w-full py-2 border-t mt-3 border-b1 ">
-        <div className=" flex items-center space-x-2 w-1/3">
+        <div className=" flex items-center space-x-2 lg:w-1/3 ">
           <span>&nbsp;&nbsp;</span>
-          <CategoryIcon /> <p>{category}</p>
+          <CategoryIcon />
+          <p className="sm:inline-flex text-xs ">{category}</p> 
         </div>
         <div className=" flex justify-center items-center w-1/3">
-          <AttachMoneyIcon /> <p>{price}</p>
+          <AttachMoneyIcon />
+           <p className="sm:inline-flex text-xs">{price}</p>
         </div>
         <div
-          className=" w-1/3 flex cursor-pointer justify-end items-center group space-x-2 "
+          className=" lg:w-1/3 flex cursor-pointer justify-end items-center group space-x-2 "
           onClick={addToBasket}
         >
-          <p className="text-transparent group-hover:text-black text-xs">
+          <p className="hidden sm:inline-flex text-transparent group-hover:text-black text-xs ">
             Add to basket
           </p>
           <ShoppingBasketIcon />
           <span>&nbsp;&nbsp;</span>
         </div>
       </div>
-      <div className="border-t flex justify-between w-full ">
+      <div className="border-t flex justify-between lg:w-full ">
         <CardActions className={classes.btnHolder}>
           <Button variant="text" name="Like" onClick={likeHandler}>
             <span>&nbsp;</span>
