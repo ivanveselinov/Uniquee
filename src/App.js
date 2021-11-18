@@ -15,23 +15,20 @@ function App() {
   const [{ color }, dispatch] = useContextProvider();
 
   const [realtimeUserLikes] = useCollection(
-      db.collection("users").doc(user?.uid).collection("likes")
-    );
+    db.collection("users").doc(user?.uid).collection("likes")
+  );
 
   useEffect(() => {
-    const userLikes = [] 
-    realtimeUserLikes?.docs.map(doc => {
-      userLikes.push(doc.id)
-    })
+    const userLikes = [];
+    realtimeUserLikes?.docs.map((doc) => {
+      userLikes.push(doc.id);
+    });
 
-
-  dispatch({
-    type: "USER_LIKES",
-    payload: userLikes,
-  })
-  }, [realtimeUserLikes])
-
-
+    dispatch({
+      type: "USER_LIKES",
+      payload: userLikes,
+    });
+  }, [realtimeUserLikes]);
 
   useEffect(() => {
     if (user) {
@@ -52,16 +49,16 @@ function App() {
   //     })
   // },[])
   return (
-    // 
+    //
     <div className="w-screen bg-gray-100 flex h-screen">
+      <Header />
       {user ? (
         <div className="flex w-screen">
           {" "}
-          <Header />
           {/* <div className="flex w-screen h-full"> */}
-            <SidebarLeft />
-            <Feedbar />
-            <SidebarRight />
+          <SidebarLeft />
+          <Feedbar />
+          <SidebarRight />
           {/* </div> */}
         </div>
       ) : (
