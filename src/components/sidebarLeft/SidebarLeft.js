@@ -16,7 +16,7 @@ import ContentCutSharpIcon from "@mui/icons-material/ContentCutSharp";
 function SidebarLeft() {
   const [{ user }, dispatch] = useContextProvider();
   return (
-    <div className="hidden lg:inline-flex w-1/4 text-left bg-white flex-col px-4">
+    <div className="hidden pt-20 lg:inline-flex w-1/4 text-left bg-white flex-col px-4">
       <div className="flex justify-between items-center border-b-2 h-24 mb-3">
         <Avatar src={user.photoURL} />
         <div>{user.displayName}</div>

@@ -17,7 +17,7 @@ function Item({price, category, image, productId}) {
             <button className=" text-red-400 mb-2" onClick={removeHandler}>
                 <HighlightOffIcon/>
                 </button>
-            <div className="sm:inline-flex text-l">
+            <div className="sm:inline-flex text-xl">
                 {price} <AttachMoneyIcon/>
             </div>
             <div className=" hidden sm:inline-flex ">  {/* Small screen hide category */}

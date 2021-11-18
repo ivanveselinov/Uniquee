@@ -53,16 +53,16 @@ function App() {
   // },[])
   return (
     // 
-    <div className="w-screen bg-gray-100 flex flex-col ">
+    <div className="w-screen bg-gray-100 flex h-screen">
       {user ? (
-        <div>
+        <div className="flex w-screen">
           {" "}
           <Header />
-          <div className="flex w-screen h-full">
+          {/* <div className="flex w-screen h-full"> */}
             <SidebarLeft />
             <Feedbar />
             <SidebarRight />
-          </div>
+          {/* </div> */}
         </div>
       ) : (
         <Login />
