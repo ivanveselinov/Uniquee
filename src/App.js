@@ -58,11 +58,9 @@ function App() {
         <div className="flex w-screen">
           {" "}
           <Header />
-          {/* <div className="flex w-screen h-full"> */}
             <SidebarLeft />
             <Feedbar />
             <SidebarRight />
-          {/* </div> */}
         </div>
       ) : (
         <Login />
